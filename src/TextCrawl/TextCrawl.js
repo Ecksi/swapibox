@@ -8,7 +8,17 @@ class TextCrawl extends Component {
       textCrawl: ''
     };
   }
+
+  componentDidMount = async () => {
+    const randomNumber = Math.floor((Math.random() * 7));
+    const url = 'https://swapi.co/api/films/';
+    const response = await fetch(url);
+    const data = await response.json();
+    const textCrawl = data.results[randomNumber];
   
+    this.setState({ textCrawl });
+  }
+
   render() {
     return (
       <div>
