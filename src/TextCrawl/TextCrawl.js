@@ -24,9 +24,15 @@ class TextCrawl extends Component {
 
     return (
       <div className="TextCrawl">
-        <h2 className="filmTitle">{title}</h2>
-        <h3 className="filmEpisode">Episode {episode_id}</h3>
-        <p className="filmCrawl">{opening_crawl}</p>
+        <section class="star-wars">
+          <div class="crawl">
+            <div class="title">
+              <p className="filmEpisode">Episode {episode_id}</p>
+              <h1 className="filmTitle">{title}</h1>
+            </div>
+            <p className="filmCrawl">{opening_crawl}</p>
+          </div>
+        </section>
       </div>
     );
   }
