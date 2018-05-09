@@ -15,16 +15,18 @@ class TextCrawl extends Component {
     const response = await fetch(url);
     const data = await response.json();
     const textCrawl = data.results[randomNumber];
-  
+
     this.setState({ textCrawl });
   }
 
   render() {
+    const { title, episode_id, opening_crawl } = this.state.textCrawl;
+
     return (
-      <div>
-        <h2></h2>
-        <h3></h3>
-        <p></p>
+      <div className="TextCrawl">
+        <h2 className="filmTitle">{title}</h2>
+        <h3 className="filmEpisode">Episode {episode_id}</h3>
+        <p className="filmCrawl">{opening_crawl}</p>
       </div>
     );
   }
