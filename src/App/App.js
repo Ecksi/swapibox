@@ -5,6 +5,54 @@ import { fetchPeople, fetchPlanets, fetchVehicles } from '../ApiCalls/ApiCalls';
 import './App.css';
 
 class App extends Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      people: '',
+      planets: '',
+      vehicles: '',
+      favorites: []
+    };
+   
+    this.fetchData = this.fetchData.bind(this);
+  }
+
+  fetchData (event) {
+    event.preventDefault();
+
+    if (event.target.innerText === 'People') {
+      return this.peopleData();
+    } else if (event.target.innerText === 'Planets') {
+      return this.planetData();
+    } else if (event.target.innerText === 'Vehicles') {
+      return this.vehicleData();
+    }
+  }
+
+  async peopleData () {
+    this.setState({
+      people: await fetchPeople(),
+      planets: '',
+      vehicles: ''
+    });
+  }
+
+  async planetData () {
+    this.setState({
+      people: '',
+      planets: await fetchPlanets(),
+      vehicles: ''
+    });
+  }
+
+  async vehicleData () {
+    this.setState({
+      people: '',
+      planets: '',
+      vehicles: await fetchVehicles()
+    });
+  }
+
   render() {
     return (
       <div className="App">
