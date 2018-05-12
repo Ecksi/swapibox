@@ -19,13 +19,14 @@ class App extends Component {
 
   fetchData (event) {
     event.preventDefault();
-
     if (event.target.innerText === 'People') {
       return this.peopleData();
     } else if (event.target.innerText === 'Planets') {
       return this.planetData();
     } else if (event.target.innerText === 'Vehicles') {
       return this.vehicleData();
+    } else if (event.target.innerText.split(' ')[0] === 'Favorites') {
+      return this.showFavorites();
     }
   }
 
@@ -53,17 +54,44 @@ class App extends Component {
     });
   }
 
+  showFavorites = () => {
+    this.setState({
+      people: '',
+      planets: '',
+      vehicles: ''
+    });
+  }
+
+  addToFavorites = (card) => {
+    this.setState({
+      favorites: [card, ...this.state.favorites]
+    });
+  }
+
+  removeFromFavorites = (card) => {
+    const getIndex = this.state.favorites.findIndex(favorite => favorite.id === card.id);
+
+    this.state.favorites.splice(getIndex, 1);
+
+    this.setState ({
+      favorites: [...this.state.favorites]
+    });
+  }
+
   render() {
     return (
       <div className="App">
         <button onClick={this.fetchData}>People</button>
         <button onClick={this.fetchData}>Planets</button>
         <button onClick={this.fetchData}>Vehicles</button>
-        <button>Favorites</button>
+        <button onClick={this.fetchData}>Favorites {this.state.favorites.length}</button>
         <CardContainer 
           people={this.state.people}
           planets={this.state.planets}
           vehicles={this.state.vehicles}
+          favorites={this.state.favorites}
+          addFavorite={this.addToFavorites}
+          removeFavorite={this.removeFromFavorites}
         />
         <TextCrawl />
       </div>
