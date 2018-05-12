@@ -1,0 +1,7 @@
+.CardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  color: greenyellow;
+  border: 1px solid green;
+}
