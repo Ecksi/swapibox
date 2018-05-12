@@ -4,12 +4,18 @@ import './Card.css';
 
 const Card = (props) => {
   const cardType = (props) => {
-    if (props.type === 'people') {
+    if (props.id.split('-')[0] === 'people') {
       return peopleCard(props);
-    } else if (props.type === 'planets') {
+    } else if (props.id.split('-')[0] === 'planets') {
       return planetCard(props);
-    } else if (props.type === 'vehicles') {
+    } else if (props.id.split('-')[0] === 'vehicles') {
       return vehicleCard(props);
+    } 
+  };
+
+  const isFavorite = (props) => {
+    if (props.isFavorite === "true") {
+      return true;
     }
   };
 
@@ -49,9 +55,16 @@ const Card = (props) => {
   };
 
   return (
-    <div className="Card" >
+    <div 
+      className={ isFavorite(props) ? "favorite Card" : "Card" }
+    >
       { cardType(props) }
-      <Favorite />
+      <Favorite 
+        card={props}
+        favorites={props.favorites}
+        addFavorite={props.addFavorite}
+        removeFavorite={props.removeFavorite}
+      />
     </div>
   );
 };
