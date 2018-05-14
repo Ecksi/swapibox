@@ -1,36 +1,72 @@
-import  { fetchPeople } from './ApiCalls';
-import mockNetworkDatabbb from '../DataCleaner/DataCleaner';
+/* eslint-disable */
+import fetchData from './ApiCalls';
+import mockCleanData from '../__mocks__/mockCleanData';
+import mockDirtyData from '../__mocks__/mockDirtyData';
 
 describe('ApiCalls', () => {
+
   describe('fetchPeople', () => {
-    it('should return an object with the correct shape on successful fetch call', () => {
-      // Setup
-      const expected = [{
-        name: 'jim',
-        homeworld: 'turing',
-        species: 'asian',
-        language: 'jibberish',
-        population: '1',
-      }];
-      const mockNetworkData = mockNetworkDatabbb;
-      const jsonParsePromise = Promise.resolve(mockNetworkData);
-      const response = { json: () => jsonParsePromise };
-      const successfulFetchPromise = Promise.resolve(response);
 
-      window.fetch = jest.fn().mockImplementation(() => {
-        successfulFetchPromise;
-      });
+    beforeEach(() => {
+      window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+        status: 'ok',
+        json: () => Promise.resolve(mockDirtyData.people)
+      }));
+    });
 
-      // setup before each wtih window.fetch
-      // Execution
-      // fetches with right url
-      // expected data given back (cleaned Data)
-      // calls other methods (with right info)
-      // throws error if status 500
-      // ok: 'true' == status: 200
+    it('should return unformatted data on successful fetch call', async () => {
+      const peopleUrl = 'https://swapi.co/api/people/';
+      await fetchData('people');
 
-      // Expectation
-      expect(window.fetch).toEqual(expected);
+      expect(window.fetch).toHaveBeenCalledWith(peopleUrl);
+    });
+
+    it('should format the data returned', async () => {
+      const cleanPeopleData = mockCleanData.people;
+      const peopleUrl = 'https://swapi.co/api/people';
+
+      await fetchData('people');
+
+      expect(await fetchData('people')).toEqual(cleanPeopleData);
+      
+    });
+  
+    it('should throw an error when the fetch fails', () => {
+
+    });
+  });
+
+  describe('fetchPlanets', () => {
+
+    beforeEach(() => {
+      window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+        status: 'ok',
+        json: () => Promise.resolve(mockDirtyData.planets)
+      }));
+    });
+
+    it('should return unformatted data on successful fetch call', async () => {
+      const planetsUrl = 'https://swapi.co/api/planets/';
+      await fetchData('planets');
+
+      expect(window.fetch).toHaveBeenCalledWith(planetsUrl);
+    });
+  });
+
+  describe('fetchVehicles', () => {
+
+    beforeEach(() => {
+      window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+        status: 'ok',
+        json: () => Promise.resolve(mockDirtyData.vehicles)
+      }));
+    });
+
+    it('should return unformatted data on successful fetch call', async () => {
+      const vehiclesUrl = 'https://swapi.co/api/vehicles/';
+      await fetchData('vehicles');
+
+      expect(window.fetch).toHaveBeenCalledWith(vehiclesUrl);
     });
   });
 });

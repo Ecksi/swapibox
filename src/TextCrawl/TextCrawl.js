@@ -11,8 +11,7 @@ class TextCrawl extends Component {
 
   componentDidMount = async () => {
     const randomNumber = Math.floor((Math.random() * 7));
-    const url = 'https://swapi.co/api/films/';
-    const response = await fetch(url);
+    const response = await fetch('https://swapi.co/api/films/');
     const data = await response.json();
     const textCrawl = data.results[randomNumber];
 
@@ -27,10 +26,10 @@ class TextCrawl extends Component {
         <section className="star-wars">
           <div className="crawl">
             <div className="title">
-              <p className="filmEpisode">Episode {episode_id}</p>
-              <h1 className="filmTitle">{title}</h1>
+              <p>Episode {episode_id}</p>
+              <h1>{title}</h1>
             </div>
-            <p className="filmCrawl">{opening_crawl}</p>
+            <p>{opening_crawl}</p>
           </div>
         </section>
       </div>

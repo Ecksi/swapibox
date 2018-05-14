@@ -3,15 +3,15 @@ import Card from '../Card/Card';
 import PropTypes from 'prop-types';
 import './CardContainer.css';
 
-const CardContainer = (props) => {
-  const getCategory = (props) => {
+const CardContainer = props => {
+  const getCategory = props => {
     const propKeys = Object.keys(props);
     const sanitizedKeys = propKeys.slice(0, 4);
 
     return sanitizedKeys.find(category => props[category].length);
   };
 
-  const getData = (props) => {
+  const getData = props => {
     const { favorites, addFavorite, removeFavorite } = props;
     const dirtyData = props[getCategory(props)];
     
