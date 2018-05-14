@@ -1,6 +1,14 @@
+html {
+  font-size: 10px;
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
+  max-height: 100%;
+  overflow: hidden;
   font-family: sans-serif;
-  background-image: url(http://i.imgur.com/qMci1Q8.gif);
+  background-size: contain;
+  background-image: url(https://wallup.net/wp-content/uploads/2016/01/300322-Star_Trek-USS_Enterprise_spaceship-minimalism-space-artwork.jpg);
 }
