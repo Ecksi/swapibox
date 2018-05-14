@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import { shallow } from 'enzyme';
 import favorites from './Favorites';
@@ -17,7 +18,7 @@ describe('Favorites', () => {
 
   });
 
-  it('should not add the same card more than once to the favorites array' () => {
+  it('should not add the same card more than once to the favorites array', () => {
 
   });
 

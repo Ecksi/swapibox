@@ -3,8 +3,8 @@ import Favorite from '../Favorites/Favorites';
 import PropTypes from 'prop-types';
 import './Card.css';
 
-const Card = (props) => {
-  const cardType = (props) => {
+const Card = props => {
+  const cardType = props => {
     const sanitizedId = props.id.split('-')[0];
 
     if (sanitizedId === 'people') {
@@ -16,7 +16,7 @@ const Card = (props) => {
     } 
   };
 
-  const isFavorite = (props) => props.isFavorite ? true : false;
+  const isFavorite = props => props.isFavorite ? true : false;
 
   const peopleCard = props => {
     const { id, name, homeworld, species, language, population } = props;

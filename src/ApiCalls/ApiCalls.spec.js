@@ -1,3 +1,4 @@
+/* eslint-disable */
 import fetchData from './ApiCalls';
 import mockCleanData from '../__mocks__/mockCleanData';
 import mockDirtyData from '../__mocks__/mockDirtyData';

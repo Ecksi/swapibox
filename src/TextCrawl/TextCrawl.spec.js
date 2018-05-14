@@ -1,5 +1,6 @@
-// import React from 'react';
-// import { shallow } from 'enzyme';
+/* eslint-disable */
+import React from 'react';
+import { shallow } from 'enzyme';
 import TextCrawl from './TextCrawl';
 import mockDirtyData from '../__mocks__/mockDirtyData';
 

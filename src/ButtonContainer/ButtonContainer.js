@@ -1,8 +1,9 @@
+/* eslint-disable */
 import React from 'react';
 import PropTypes from 'prop-types';
 import './ButtonContainer.css';
 
-const ButtonContainer = (props) => {
+const ButtonContainer = props => {
   return (
     <section className="buttonContainer">
       <span className="favoriteCounter">{props.favoritesCounter.length}</span>
