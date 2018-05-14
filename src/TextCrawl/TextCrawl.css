@@ -1,6 +1,4 @@
 .TextCrawl {
-  /* width: 37%; */
-  margin-top: 80%;
   text-align: center;
   color: #ffd700; }
 
@@ -8,21 +6,20 @@
   display: flex;
   justify-content: center;
   position: relative;
-  top: 60%;
-  height: 80rem;
+  height: 800px;
   color: #feda4a;
   font-family: 'Pathway Gothic One', sans-serif;
-  font-size: 320%;
+  font-size: 400%;
   font-weight: 600;
-  letter-spacing: 5px;
+  letter-spacing: 6px;
   line-height: 150%;
-  perspective: 650px;
+  perspective: 400px;
   text-align: justify; }
 
 .crawl {
   position: relative;
   top: 99999px;
-  transform-origin: 50px 50px;
+  transform-origin: 50% 100%;
   animation: crawl 50s linear; }
 
 .crawl > .title {

@@ -1,14 +1,11 @@
 .mainArea {
   display: flex;
-  overflow: scroll;
-}
+  overflow: scroll; }
 
 .scrollWrap {
   width: 37%;
   margin-top: 15%;
-  overflow: hidden;
-}
+  overflow: hidden; }
 
 .loadingWrap {
-  width: 63%;
-}
+  width: 63%; }

@@ -1,8 +1,7 @@
 .buttonContainer {
   display: flex;
   flex-direction: row-reverse;
-  margin-right: 5rem;
-}
+  margin-right: 5rem; }
 
 button {
   height: 3rem;
@@ -12,43 +11,33 @@ button {
   background-size: contain;
   background-repeat: no-repeat;
   border: none;
-  margin-right: 2rem;
-}
+  margin-right: 2rem; }
 
 .peopleButton {
-  background-image: url(https://fontmeme.com/permalink/180513/7620887c8a058cb298b227f46ff8e4ea.png);
-}
+  background-image: url(https://fontmeme.com/permalink/180513/7620887c8a058cb298b227f46ff8e4ea.png); }
 
 .peopleButton:hover {
-  background-image: url(https://fontmeme.com/permalink/180513/c6b7caf394f6d925f74bac3115ae20f0.png);
-}
+  background-image: url(https://fontmeme.com/permalink/180513/c6b7caf394f6d925f74bac3115ae20f0.png); }
 
 .planetsButton {
-  background-image: url(https://fontmeme.com/permalink/180513/7fa67d996dc977584e7a550b8876f44d.png);
-}
+  background-image: url(https://fontmeme.com/permalink/180513/7fa67d996dc977584e7a550b8876f44d.png); }
 
 .planetsButton:hover {
-  background-image: url(https://fontmeme.com/permalink/180513/5bc18612729d5200b66bee05d4ccebd8.png);
-}
+  background-image: url(https://fontmeme.com/permalink/180513/5bc18612729d5200b66bee05d4ccebd8.png); }
 
 .vehiclesButton {
-  background-image: url(https://fontmeme.com/permalink/180513/40df7dcb81ba53d617365d57a165fbdc.png);
-}
+  background-image: url(https://fontmeme.com/permalink/180513/40df7dcb81ba53d617365d57a165fbdc.png); }
 
 .vehiclesButton:hover {
-  background-image: url(https://fontmeme.com/permalink/180513/b2153de104d9cc875ca086abdd0d2bf2.png);
-}
+  background-image: url(https://fontmeme.com/permalink/180513/b2153de104d9cc875ca086abdd0d2bf2.png); }
 
 .favoritesButton {
-  background-image: url(https://fontmeme.com/permalink/180513/6c85b784a370af719838c2d7348f778a.png);
-}
+  background-image: url(https://fontmeme.com/permalink/180513/6c85b784a370af719838c2d7348f778a.png); }
 
 .favoritesButton:hover {
-  background-image: url(https://fontmeme.com/permalink/180513/7b3071ad6d66b9bd774abcbb22b29cbc.png);
-}
+  background-image: url(https://fontmeme.com/permalink/180513/7b3071ad6d66b9bd774abcbb22b29cbc.png); }
 
 .favoriteCounter {
   font-size: 26px;
   font-weight: 800;
-  font-family: 'Pathway Gothic One', sans-serif; 
-}
+  font-family: 'Pathway Gothic One', sans-serif; }
