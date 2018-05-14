@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
+import ButtonContainer from '../ButtonContainer/ButtonContainer';
 import CardContainer from '../CardContainer/CardContainer';
 import TextCrawl from '../TextCrawl/TextCrawl';
-import { fetchPeople, fetchPlanets, fetchVehicles } from '../ApiCalls/ApiCalls';
+import Header from '../Header/Header';
+import Loading from '../Loading/Loading';
+import fetchData from '../ApiCalls/ApiCalls';
 import './App.css';
 
 class App extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      people: '',
-      planets: '',
-      vehicles: '',
-      favorites: []
+      people: [],
+      planets: [],
+      vehicles: [],
+      favorites: [],
+      loading: false,
+      loadScreen: ''
     };
    
     this.fetchData = this.fetchData.bind(this);
@@ -19,46 +24,57 @@ class App extends Component {
 
   fetchData (event) {
     event.preventDefault();
-    if (event.target.innerText === 'People') {
-      return this.peopleData();
-    } else if (event.target.innerText === 'Planets') {
-      return this.planetData();
-    } else if (event.target.innerText === 'Vehicles') {
-      return this.vehicleData();
-    } else if (event.target.innerText.split(' ')[0] === 'Favorites') {
-      return this.showFavorites();
+    const targetClass = event.target.classList[0].split('Button')[0];
+
+    this.setState({
+      loading: true,
+      loadScreen: targetClass
+    });
+
+    if (targetClass === 'people') {
+      this.peopleData();
+    } else if (targetClass === 'planets') {
+      this.planetData();
+    } else if (targetClass === 'vehicles') {
+      this.vehicleData();
+    } else if (targetClass === 'favorites') {
+      this.favoritesData();
     }
   }
 
   async peopleData () {
     this.setState({
-      people: await fetchPeople(),
-      planets: '',
-      vehicles: ''
+      people: await fetchData('people'),
+      planets: [],
+      vehicles: [],
+      loading: false
     });
   }
 
   async planetData () {
     this.setState({
-      people: '',
-      planets: await fetchPlanets(),
-      vehicles: ''
+      people: [],
+      planets: await fetchData('planets'),
+      vehicles: [],
+      loading: false
     });
   }
 
   async vehicleData () {
     this.setState({
-      people: '',
-      planets: '',
-      vehicles: await fetchVehicles()
+      people: [],
+      planets: [],
+      vehicles: await fetchData('vehicles'),
+      loading: false
     });
   }
 
-  showFavorites = () => {
+  favoritesData () {
     this.setState({
-      people: '',
-      planets: '',
-      vehicles: ''
+      people: [],
+      planets: [],
+      vehicles: [],
+      loading: false
     });
   }
 
@@ -69,31 +85,44 @@ class App extends Component {
   }
 
   removeFromFavorites = (card) => {
-    const getIndex = this.state.favorites.findIndex(favorite => favorite.id === card.id);
+    const favorites = this.state.favorites;
+    const getIndex = favorites.findIndex(favorite => favorite.id === card.id);
 
-    this.state.favorites.splice(getIndex, 1);
+    favorites.splice(getIndex, 1);
 
-    this.setState ({
-      favorites: [...this.state.favorites]
+    this.setState({
+      favorites: [...favorites]
     });
   }
 
   render() {
+    const loadingScreen = <Loading 
+      loadScreen={this.state.loadScreen}
+    />;
+    const loadedScreen = <CardContainer
+      people={this.state.people}
+      planets={this.state.planets}
+      vehicles={this.state.vehicles}
+      favorites={this.state.favorites}
+      addFavorite={this.addToFavorites}
+      removeFavorite={this.removeFromFavorites}
+    />;
+
     return (
       <div className="App">
-        <button onClick={this.fetchData}>People</button>
-        <button onClick={this.fetchData}>Planets</button>
-        <button onClick={this.fetchData}>Vehicles</button>
-        <button onClick={this.fetchData}>Favorites {this.state.favorites.length}</button>
-        <CardContainer 
-          people={this.state.people}
-          planets={this.state.planets}
-          vehicles={this.state.vehicles}
-          favorites={this.state.favorites}
-          addFavorite={this.addToFavorites}
-          removeFavorite={this.removeFromFavorites}
+        <Header />
+        <ButtonContainer 
+          fetchData={this.fetchData}
+          favoritesCounter={this.state.favorites}
         />
-        <TextCrawl />
+        <main className="mainArea">
+          <div className="scrollWrap">
+            <TextCrawl />
+          </div>
+          <div className="loadingWrap">
+            { this.state.loading ? loadingScreen : loadedScreen }
+          </div>
+        </main>
       </div>
     );
   }
